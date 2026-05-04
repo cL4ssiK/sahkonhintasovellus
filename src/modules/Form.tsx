@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
+import { type DateRange } from 'react-day-picker';
 import { DropdownSelect, type Option } from './DropdownSelect';
+import { DateRangeSelector } from './DateRangeSelector';
+import { usePriceDataContext } from '../contexts/PriceDataContext';
+import { get_spot_prices } from '../utils/api';
+import { convertToFixedISOString } from '../utils/utilityFunctionis';
 
 const areaOptions: Option[] = [
     { value: 'FI', label: 'Finland' },
@@ -21,16 +26,35 @@ const resolutionOptions: Option[] = [
 ];
 
 export function Form() {
+    const { setPriceData, setError } = usePriceDataContext();
+
     const [selectedArea, setSelectedArea] = useState<string>(areaOptions[0].value);
     const [selectedResolution, setSelectedResolution] = useState<string>(resolutionOptions[0].value);
-
+    const [range, setRange] = useState<DateRange | undefined>();
+    
     useEffect(() => {
-        //Aina kun vaihtuu, nii päivittää.
-        console.log(selectedArea);
-        console.log(selectedResolution);
-    }, [selectedArea, selectedResolution]);
+        //TODO: Cacheta selaimen muistiin ni ei tarvi pollaa apia kokoaja.
+        if (!range?.from || !range?.to) return;
 
-    //TODO: Lisää aikavälin valinta
+        //console.log(convertToFixedISOString(range.from));
+        //console.log(convertToFixedISOString(range.to));
+        
+        const f = async function(){
+            const data = (await get_spot_prices(
+                selectedArea,
+                convertToFixedISOString(range.from), 
+                convertToFixedISOString(range.to),   
+                selectedResolution))?.marketPrices?.periodicSpotPrices;
+            if(!data) {
+                setError("Data not found!");
+                return;
+            };
+            console.log(data);
+            setPriceData(data);
+        };
+        f();
+    }, [selectedArea, selectedResolution, range, setPriceData, setError]);
+
     return (
       <div>
         <DropdownSelect 
@@ -45,6 +69,10 @@ export function Form() {
           onSelect={setSelectedResolution}
           value={selectedResolution}
         ></DropdownSelect>
+        <DateRangeSelector
+            range={range}
+            setRange={setRange}
+        ></DateRangeSelector>
       </div>
     );
 }
