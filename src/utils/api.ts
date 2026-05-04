@@ -26,7 +26,8 @@ interface PeriodLength {
   hours: number;                       // Tuntien määrä
 }
 
-export async function get_spot_prices(): Promise<MarketPrices | null>{
+export async function get_spot_prices(area: string, start: string, end: string, resolution: string): 
+  Promise<MarketPrices | null>{
     const query = `query spot_price_chart_SpotPricePeriodicQuery(
       $tenantId: ID!
       $deliveryArea: String!
@@ -68,10 +69,10 @@ export async function get_spot_prices(): Promise<MarketPrices | null>{
           query,
           variables: { 
                 tenantId:"AKAMON", 
-                deliveryArea:"FI", 
-                start:"2024-01-01T00:00:00Z", 
-                end:"2024-01-31T23:59:59Z", 
-                resolution:"day" 
+                deliveryArea: area, 
+                start: start, 
+                end: end, 
+                resolution: resolution 
             },
         }),
     });
@@ -83,6 +84,5 @@ export async function get_spot_prices(): Promise<MarketPrices | null>{
     return null;
   }
 
-  // data is now typed as UserData
   return data as MarketPrices;
 }
