@@ -1,5 +1,7 @@
 export interface MarketPrices {
-    mp: PeriodicSpotPrice[];
+    marketPrices: {
+        periodicSpotPrices: PeriodicSpotPrice[];
+    };
 }
 
 export interface PeriodicSpotPrice {
@@ -10,7 +12,7 @@ export interface PeriodicSpotPrice {
   unit: string;                     // Yksikkö (yleensä "EUR/MWh")
 }
 
-export interface Period {
+interface Period {
   start: string;                    // Jakson alku (ISO 8601)
   end: string;                      // Jakson loppu (ISO 8601)
   type: string;                     // Tyyppi: "pt15m", "hour", "day", "week", "month"
@@ -19,7 +21,7 @@ export interface Period {
   length: PeriodLength;             // Jakson pituus
 }
 
-export interface PeriodLength {
+interface PeriodLength {
   days: number;                        // Päivien määrä
   hours: number;                       // Tuntien määrä
 }
@@ -65,7 +67,7 @@ export async function get_spot_prices(): Promise<MarketPrices | null>{
         body: JSON.stringify({
           query,
           variables: { 
-                tenantId:"cLassiK", 
+                tenantId:"AKAMON", 
                 deliveryArea:"FI", 
                 start:"2024-01-01T00:00:00Z", 
                 end:"2024-01-31T23:59:59Z", 
