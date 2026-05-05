@@ -5,6 +5,7 @@ import { DateRangeSelector } from './DateRangeSelector';
 import { usePriceDataContext } from '../contexts/PriceDataContext';
 import { get_spot_prices } from '../utils/api';
 import { convertToFixedISOString } from '../utils/utilityFunctionis';
+import styles from './Form.module.css';
 
 const areaOptions: Option[] = [
     { value: 'FI', label: 'Finland' },
@@ -35,9 +36,6 @@ export function Form() {
     useEffect(() => {
         //TODO: Cacheta selaimen muistiin ni ei tarvi pollaa apia kokoaja.
         if (!range?.from || !range?.to) return;
-
-        //console.log(convertToFixedISOString(range.from));
-        //console.log(convertToFixedISOString(range.to));
         
         const f = async function(){
             const data = (await get_spot_prices(
@@ -50,25 +48,28 @@ export function Form() {
                 return;
             };
             console.log(data);
+            setError("");
             setPriceData(data);
         };
         f();
     }, [selectedArea, selectedResolution, range, setPriceData, setError]);
 
     return (
-      <div>
+      <div className={styles.baseDiv}>
+        <div className={styles.dropdowns}>
         <DropdownSelect 
           options={areaOptions}
           label="area"
           onSelect={setSelectedArea}
           value={selectedArea}
-        ></DropdownSelect>
+          ></DropdownSelect>
         <DropdownSelect 
           options={resolutionOptions}
           label="resolution"
           onSelect={setSelectedResolution}
           value={selectedResolution}
-        ></DropdownSelect>
+          ></DropdownSelect>
+        </div>
         <DateRangeSelector
             range={range}
             setRange={setRange}

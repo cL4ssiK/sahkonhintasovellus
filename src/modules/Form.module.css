@@ -1,0 +1,14 @@
+.dropdowns{
+    order: 1;
+    margin: 0em 0em 0 5em;
+    align-items: start;
+    display: flex;
+    flex-direction: column;
+}
+
+.baseDiv{
+    display: flex;
+    justify-content: center;
+
+    margin: 5em 0 0 0;
+}

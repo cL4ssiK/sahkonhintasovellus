@@ -1,4 +1,5 @@
 import { type ChangeEvent } from 'react';
+import styles from './DropdownSelect.module.css';
 
 export interface Option {
   value: string;
@@ -13,12 +14,13 @@ export function DropdownSelect({ options, label, onSelect, value }:
     };
 
     return (
-      <div>
-        <label>
+      <div className={styles.base}>
+        <label className={styles.label}>
           Select {label}:
         </label>
 
         <select 
+          className={styles.select}
           value={value} 
           onChange={handleChange}>
           {options.map((option) => (

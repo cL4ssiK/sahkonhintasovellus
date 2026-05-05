@@ -1,0 +1,4 @@
+.appBaseDiv{
+    display: flex;
+    flex-direction: column;
+}

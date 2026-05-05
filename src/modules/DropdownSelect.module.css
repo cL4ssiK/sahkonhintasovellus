@@ -1,0 +1,14 @@
+.label{
+    width: 140px;
+    display: inline-flex;
+
+    margin: 0 1em 0 0;
+}
+
+.select{
+    width: 140px;
+}
+
+.base{
+    margin-bottom: 0.5em;
+}

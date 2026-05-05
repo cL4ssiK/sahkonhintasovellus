@@ -10,13 +10,11 @@ export function DateRangeSelector({ range, setRange }:
         mode="range"
         selected={range}
         onSelect={setRange}
-        // You can limit selection to 30 days, or prevent past dates
-        //disabled={{ before: new Date() }} 
         footer={
           <div>
             {range?.from ? (
               !range.to ? (
-                <p>Please select the end date.</p>
+                <p>Select the end date.</p>
               ) : (
                 <p>
                   Range: <b>{range.from.toLocaleDateString()}</b> –{" "}
@@ -24,7 +22,7 @@ export function DateRangeSelector({ range, setRange }:
                 </p>
               )
             ) : (
-              <p>Please pick the first day.</p>
+              <p>Pick the first day.</p>
             )}
           </div>
         }
