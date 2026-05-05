@@ -10,6 +10,7 @@ function App() {
 
   return (
     <div className='appBaseDiv'>
+       <div className="scanlines"></div>
       <h2>Electricity spot price viewer</h2>
       <Header setView={setView}></Header>
       {views[view]}
