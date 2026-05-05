@@ -3,14 +3,21 @@ import { usePriceDataContext } from "../contexts/PriceDataContext";
 import { price_eurMWh_to_sntKWh, addVAT } from "../utils/utilityFunctionis"; 
 import styles from './PriceTable.module.css';
 import { useFormContext } from "../contexts/FormContext";
+import { useMemo } from "react";
 
 
 export function PriceTable(){
     const { priceData, error } = usePriceDataContext();
     const { selectedArea } = useFormContext();
 
+    const avg = useMemo(() => {
+        const average = priceData.reduce((a, b) => a + b.meanPriceWithoutVat, 0) / (priceData.length || 1);
+        return price_eurMWh_to_sntKWh(addVAT(average, selectedArea)).toFixed(2);
+    }, [priceData, selectedArea]);
+
     return(
         <div className={styles.base}>
+            <p>PERIOD AVERAGE {avg} c/kWh</p>
             { error === "" ? (
                 <table className={styles.table}>
                     <thead>

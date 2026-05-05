@@ -1,11 +1,13 @@
 .base{
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .table{
     border: 2px solid;
     padding: 1em;
+    max-width: fit-content;
 }
 
 th, td{
@@ -18,4 +20,9 @@ th{
 
 .date{
     font-weight: bold;
+}
+
+.base p{
+    font-weight: bold;
+    margin-bottom: 1em;
 }
