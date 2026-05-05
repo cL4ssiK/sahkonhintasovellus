@@ -1,16 +1,17 @@
 import { parseISO, format } from "date-fns";
 import { usePriceDataContext } from "../contexts/PriceDataContext";
 import { price_eurMWh_to_sntKWh, addVAT } from "../utils/utilityFunctionis"; 
+import styles from './PriceTable.module.css';
 
 export function PriceTable(){
     const { priceData, error } = usePriceDataContext();
 
     return(
-        <div>
+        <div className={styles.base}>
             {
             error === "" ? (
             
-            <table>
+            <table className={styles.table}>
                 <thead>
                   <tr>
                     <th>Date</th>
@@ -26,7 +27,7 @@ export function PriceTable(){
 
                         return(
                         <tr key={index}>
-                            <td>{format(date, 'dd.MM.') !== formatprev ? format(date, 'dd.MM.') : ""}</td>
+                            <td className={styles.date}>{format(date, 'dd.MM.') !== formatprev ? format(date, 'dd.MM.') : ""}</td>
                             <td>{format(date, 'HH:mm')}</td>
                             <td>{
                                 price_eurMWh_to_sntKWh(addVAT(elem.meanPriceWithoutVat)).toFixed(2)

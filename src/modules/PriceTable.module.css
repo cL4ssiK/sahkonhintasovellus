@@ -1,0 +1,21 @@
+.base{
+    display: flex;
+    justify-content: center;
+}
+
+.table{
+    border: 2px solid;
+    padding: 1em;
+}
+
+th, td{
+    padding-right: 1em;
+}
+
+th{
+    border-bottom: 2px solid var(--features);
+}
+
+.date{
+    font-weight: bold;
+}
