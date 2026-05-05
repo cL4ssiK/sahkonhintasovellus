@@ -1,0 +1,8 @@
+:root {
+  /* Default light values */
+  --bg-primary: #242722;
+  --features: #5efe6b;
+  --scanbar-bg: #5efe6b66;
+  --scanbar-shadow: #5efe6b99;
+  --scanbar-shadow-spread: #5efe6b4d;
+}
