@@ -60,6 +60,9 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  color: var(--features);
+  background: var(--bg-primary);
+  text-transform: uppercase;
 }
 
 body {

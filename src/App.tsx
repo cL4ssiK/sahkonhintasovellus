@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className='appBaseDiv'>
-      <p>Electricity spot price viewer</p>
+      <h2>Electricity spot price viewer</h2>
       <Header setView={setView}></Header>
       {views[view]}
     </div>

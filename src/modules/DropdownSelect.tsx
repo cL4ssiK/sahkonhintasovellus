@@ -16,7 +16,7 @@ export function DropdownSelect({ options, label, onSelect, value }:
     return (
       <div className={styles.base}>
         <label className={styles.label}>
-          Select {label}:
+          {label}:
         </label>
 
         <select 
