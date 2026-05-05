@@ -4,11 +4,14 @@ import './index.css'
 import './variables.css'
 import App from './App.tsx'
 import { PriceDataProvider } from './contexts/PriceDataProvider.tsx'
+import { FormProvider } from './contexts/FormProvider.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <PriceDataProvider>
-      <App />
+      <FormProvider>
+        <App />
+      </FormProvider>
     </PriceDataProvider>
   </StrictMode>,
 )
