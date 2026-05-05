@@ -1,12 +1,18 @@
 import './App.css'
 import { Form } from './modules/Form';
+import { Header } from './modules/Header';
+import { PriceTable } from './modules/PriceTable';
+import { useState } from 'react';
 
 function App() {
+  const [view, setView] = useState(0);
+  const views = [<Form/>, <PriceTable/>];
 
   return (
-    <div>
-      <p>moi</p>
-      <Form></Form>
+    <div className='appBaseDiv'>
+      <p>Electricity spot price viewer</p>
+      <Header setView={setView}></Header>
+      {views[view]}
     </div>
   )
 }
