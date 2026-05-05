@@ -1,0 +1,11 @@
+.base{
+    border: none;
+    padding: 0 1em 1em 1em;
+    border: 2px solid var(--features);
+}
+
+@media (max-width: 768px) {
+    .base{
+        border: 2px solid var(--features);
+    }
+}

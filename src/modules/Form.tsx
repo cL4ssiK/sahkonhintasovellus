@@ -56,6 +56,7 @@ export function Form() {
 
     return (
       <div className={styles.baseDiv}>
+        <div className={styles.linerdiv}>
         <div className={styles.dropdowns}>
         <DropdownSelect 
           options={areaOptions}
@@ -74,6 +75,7 @@ export function Form() {
             range={range}
             setRange={setRange}
         ></DateRangeSelector>
+        </div>
       </div>
     );
 }
