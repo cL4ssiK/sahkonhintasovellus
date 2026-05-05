@@ -13,7 +13,6 @@ export function Form() {
     const { selectedArea, setSelectedArea, selectedResolution, setSelectedResolution, range, setRange, hasChanged, setHasChanged, resolutionOptions, areaOptions } = useFormContext();
 
     useEffect(() => {
-        //TODO: Cacheta selaimen muistiin ni ei tarvi pollaa apia kokoaja.
         if (!range?.from || !range?.to || !hasChanged) return;
         
         const f = async function(){
@@ -24,9 +23,10 @@ export function Form() {
                 selectedResolution))?.marketPrices?.periodicSpotPrices;
             if(!data) {
                 setError("Data not found!");
+                setHasChanged(false);
                 return;
             };
-            console.log(data);
+
             setError("");
             setPriceData(data);
             setHasChanged(false);
