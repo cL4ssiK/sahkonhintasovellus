@@ -1,3 +1,5 @@
+
+
 export interface MarketPrices {
     marketPrices: {
         periodicSpotPrices: PeriodicSpotPrice[];
@@ -26,6 +28,14 @@ interface PeriodLength {
   hours: number;                       // Tuntien määrä
 }
 
+/**
+ * Fetch electricity spot prices.
+ * @param area areacode (ISO 3166-1 alpha-2)
+ * @param start start datetime (ISO 8601)
+ * @param end end datetime (ISO 8601)
+ * @param resolution interval length ("pt15m", "hour", "day", "week", "month")
+ * @returns 
+ */
 export async function get_spot_prices(area: string, start: string, end: string, resolution: string): 
   Promise<MarketPrices | null>{
     const query = `query spot_price_chart_SpotPricePeriodicQuery(
@@ -80,7 +90,6 @@ export async function get_spot_prices(area: string, start: string, end: string, 
   const { data, errors } = await response.json();
 
   if (errors) {
-    console.error(errors);
     return null;
   }
 

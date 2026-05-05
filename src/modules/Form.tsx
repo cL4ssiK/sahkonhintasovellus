@@ -37,24 +37,24 @@ export function Form() {
     return (
       <div className={styles.baseDiv}>
         <div className={styles.linerdiv}>
-        <div className={styles.dropdowns}>
-        <DropdownSelect 
-          options={areaOptions}
-          label="area"
-          onSelect={setSelectedArea}
-          value={selectedArea}
-          ></DropdownSelect>
-        <DropdownSelect 
-          options={resolutionOptions}
-          label="resolution"
-          onSelect={setSelectedResolution}
-          value={selectedResolution}
-          ></DropdownSelect>
-        </div>
-        <DateRangeSelector
-            range={range}
-            setRange={setRange}
-        ></DateRangeSelector>
+          <div className={styles.dropdowns}>
+            <DropdownSelect 
+              options={areaOptions}
+              label="area"
+              onSelect={setSelectedArea}
+              value={selectedArea}
+            ></DropdownSelect>
+            <DropdownSelect 
+              options={resolutionOptions}
+              label="resolution"
+              onSelect={setSelectedResolution}
+              value={selectedResolution}
+            ></DropdownSelect>
+          </div>
+          <DateRangeSelector
+              range={range}
+              setRange={setRange}
+          ></DateRangeSelector>
         </div>
       </div>
     );

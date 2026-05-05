@@ -4,8 +4,6 @@ import { type Option } from '../modules/DropdownSelect';
 import { type DateRange } from 'react-day-picker';
 
 
-
-
 export const FormProvider = ({ children }: { children: ReactNode }) => {
     
     const areaOptions: Option[] = [

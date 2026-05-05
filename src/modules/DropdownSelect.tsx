@@ -1,6 +1,7 @@
 import { type ChangeEvent } from 'react';
 import styles from './DropdownSelect.module.css';
 
+
 export interface Option {
   value: string;
   label: string;

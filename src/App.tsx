@@ -4,6 +4,7 @@ import { Header } from './modules/Header';
 import { PriceTable } from './modules/PriceTable';
 import { useState } from 'react';
 
+
 function App() {
   const [view, setView] = useState(0);
   const views = [<Form/>, <PriceTable/>];
